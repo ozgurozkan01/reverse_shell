@@ -67,13 +67,58 @@ SOCKET create_socket()
     return server_socket;
 }
 
+void listen_connection(SOCKET server_socket)
+{
+    int i_result = listen(server_socket, SOMAXCONN);
+
+    if (i_result == SOCKET_ERROR)
+    {
+        std::cerr << "Listening was failed !!\n";
+        exit(1);
+    }
+
+    std::cout << "Waiting for connection...\n";
+}
+
+SOCKET accept_connection(SOCKET server_socket)
+{
+    SOCKET client_socket = accept(server_socket, nullptr, nullptr);
+
+    if (client_socket == INVALID_SOCKET)
+    {
+        std::cerr << "Connection acception was failed !!\n";
+        exit(1);
+    }
+
+    std::cout << "Client connected succesfully !!\n";
+
+    return client_socket;
+}
+
+void send_message(SOCKET client_socket, const std::string& message)
+{
+    int i_result = send(client_socket, message.c_str(), message.length(), 0);
+
+    if (i_result == SOCKET_ERROR)
+    {
+        std::cerr << "Message sending was failed !!\n";
+        exit(1);
+    }
+
+    std::cout << "Message sent to client succesfully.\n";
+}
+
 int main()
 {
     init_windows_socket();
 
     SOCKET server_socket = create_socket();
+    listen_connection(server_socket);
 
-    std::cout << "Socket is created and bound to port:" << DEFAULT_PORT << std::endl;
+    SOCKET client_socket = accept_connection(server_socket);
+    std::string message = "Connection established.";
+
+    send_message(client_socket, message);
 
     return 0;
 }
