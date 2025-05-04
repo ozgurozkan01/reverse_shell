@@ -1,3 +1,3 @@
 # reverse_shell
 
-!!!! JUST FOR EDUCATION...
+!!!! JUST FOR LEARNING
