@@ -1,3 +1,5 @@
+#define _WIN32_WINNT 0x0601 // make visible getaddrinfo function
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <iostream>
@@ -19,15 +21,12 @@ void init_windows_socket()
         std::cerr << "WSAStartup could be started properly !!\n";
         exit(1);
     }
-
 }
 
-SOCKET create_socket()
+SOCKET create_server_socket()
 {
     struct addrinfo *result = nullptr;
     struct addrinfo hints = {};
-
-    memset(&hints, 0, sizeof(hints));
 
     ZeroMemory(&hints, sizeof(hints));
     hints.ai_family = AF_INET; // ipV4
@@ -95,30 +94,60 @@ SOCKET accept_connection(SOCKET server_socket)
     return client_socket;
 }
 
-void send_message(SOCKET client_socket, const std::string& message)
+void send_command(SOCKET client_socket, const std::string& command)
 {
-    int i_result = send(client_socket, message.c_str(), message.length(), 0);
+    int i_result = send(client_socket, command.c_str(), command.length(), 0);
 
     if (i_result == SOCKET_ERROR)
     {
-        std::cerr << "Message sending was failed !!\n";
+        std::cerr << "Command sending failed.\n";
+        exit(1);
+    }
+}
+
+std::string recieve_result(SOCKET client_socket)
+{
+    char buffer[10000];
+    int i_result = recv(client_socket, buffer, sizeof(buffer)-1, 0);
+
+    if (i_result > 0)
+    {
+        buffer[i_result] = '\0';
+    }
+    else if (i_result == 0)
+    {
+        return "Connection closed !!\n";
+    }
+    else
+    {
+        std::cerr << "Recv failed !!\n";
         exit(1);
     }
 
-    std::cout << "Message sent to client succesfully.\n";
+    return buffer;
 }
 
 int main()
 {
     init_windows_socket();
 
-    SOCKET server_socket = create_socket();
+    SOCKET server_socket = create_server_socket();
     listen_connection(server_socket);
 
     SOCKET client_socket = accept_connection(server_socket);
-    std::string message = "Connection established.";
 
-    send_message(client_socket, message);
+    std::string command;
+
+    while (command != "exit")
+    {
+        std::cout << "~#: " << std::flush;
+        std::getline(std::cin, command);
+
+        send_command(client_socket, command);
+        std::string result = recieve_result(client_socket);
+
+        std::cout << "Result : " << result << std::endl;
+    }
 
     return 0;
 }

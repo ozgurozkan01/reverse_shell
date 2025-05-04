@@ -1,10 +1,8 @@
 # ninja log v5
-47	1697	7677529990660803	CMakeFiles/reverse_shell.dir/main.cpp.obj	7c8d49b6d840a1d5
-1438	1545	7671052484520018	reverse_shell.exe	8ee10556c8323da7
-20	132	7677530387394009	reverse_shell.exe	1922b6ec408aae8e
-14	1394	7677530607790618	CMakeFiles/reverse_shell.dir/main.cpp.obj	7c8d49b6d840a1d5
-1395	1494	7677530608741413	reverse_shell.exe	1922b6ec408aae8e
-17	1360	7677530815549649	CMakeFiles/reverse_shell.dir/main.cpp.obj	7c8d49b6d840a1d5
-1361	1461	7677530816530817	reverse_shell.exe	1922b6ec408aae8e
-55	1723	7678181425497186	CMakeFiles/reverse_shell.dir/main.cpp.obj	7c8d49b6d840a1d5
-1724	1984	7678181428088620	reverse_shell.exe	1922b6ec408aae8e
+7	1569	7678198883406044	CMakeFiles/reverse_shell.dir/main.cpp.obj	7c8d49b6d840a1d5
+1661	1764	7678201844431116	reverse_shell.exe	d0ea6d26556b059e
+4	1658	7678201843399723	CMakeFiles/reverse_shell.dir/server.cpp.obj	bd5f9de30c28e012
+16	1617	7678205393123003	CMakeFiles/reverse_shell.dir/src/client.cpp.obj	65ffe41fc87437b1
+3	1667	7678205393601499	CMakeFiles/reverse_shell.dir/src/server.cpp.obj	c637acbb63479840
+55	1618	7678388585132965	CMakeFiles/reverse_shell.dir/src/client.cpp.obj	65ffe41fc87437b1
+48	1630	7678388585259209	CMakeFiles/reverse_shell.dir/src/server.cpp.obj	c637acbb63479840

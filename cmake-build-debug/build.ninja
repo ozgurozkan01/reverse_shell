@@ -49,11 +49,17 @@ cmake_ninja_workdir = C$:/Users/ozgur/GitHub/reverse_shell/cmake-build-debug/
 
 build cmake_object_order_depends_target_reverse_shell: phony || CMakeFiles/reverse_shell.dir
 
-build CMakeFiles/reverse_shell.dir/main.cpp.obj: CXX_COMPILER__reverse_shell_unscanned_Debug C$:/Users/ozgur/GitHub/reverse_shell/main.cpp || cmake_object_order_depends_target_reverse_shell
-  DEP_FILE = CMakeFiles\reverse_shell.dir\main.cpp.obj.d
+build CMakeFiles/reverse_shell.dir/src/server.cpp.obj: CXX_COMPILER__reverse_shell_unscanned_Debug C$:/Users/ozgur/GitHub/reverse_shell/src/server.cpp || cmake_object_order_depends_target_reverse_shell
+  DEP_FILE = CMakeFiles\reverse_shell.dir\src\server.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\reverse_shell.dir
-  OBJECT_FILE_DIR = CMakeFiles\reverse_shell.dir
+  OBJECT_FILE_DIR = CMakeFiles\reverse_shell.dir\src
+
+build CMakeFiles/reverse_shell.dir/src/client.cpp.obj: CXX_COMPILER__reverse_shell_unscanned_Debug C$:/Users/ozgur/GitHub/reverse_shell/src/client.cpp || cmake_object_order_depends_target_reverse_shell
+  DEP_FILE = CMakeFiles\reverse_shell.dir\src\client.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\reverse_shell.dir
+  OBJECT_FILE_DIR = CMakeFiles\reverse_shell.dir\src
 
 
 # =============================================================================
@@ -63,7 +69,7 @@ build CMakeFiles/reverse_shell.dir/main.cpp.obj: CXX_COMPILER__reverse_shell_uns
 #############################################
 # Link the executable reverse_shell.exe
 
-build reverse_shell.exe: CXX_EXECUTABLE_LINKER__reverse_shell_Debug CMakeFiles/reverse_shell.dir/main.cpp.obj
+build reverse_shell.exe: CXX_EXECUTABLE_LINKER__reverse_shell_Debug CMakeFiles/reverse_shell.dir/src/server.cpp.obj CMakeFiles/reverse_shell.dir/src/client.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\reverse_shell.dir
